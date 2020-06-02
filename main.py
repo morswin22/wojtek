@@ -3,6 +3,7 @@ from tensorflow import keras
 import numpy as np
 import sys
 import ctypes
+from matrix import doolittle, cholesky
 
 class Cell:
   def __init__(self, x, y, w, h, callback=None):
@@ -78,7 +79,23 @@ class Cell:
           if j == None:
             done = False
       if done:
-        print(np.array(matrix).flatten())
+        print("Dla macierzy", matrix)
+        try:
+          L, U = doolittle(matrix)
+          print("Metoda LU")
+          print("L", L)
+          print("U", U)
+        except:
+          print("Tej macierzy nie da się rozłożyć metodą LU")
+        try:
+          L, Lt = cholesky(matrix)
+          print("Rozkład Choleskiego")
+          print("L", L)
+          print("Lt", Lt)
+        except:
+          print("Tej macierzy nie da się rozłożyć dekompozycją Choleskiego")
+        print("")
+
 
 def roundline(surface, start, end, radius=1):
   dx = end[0]-start[0]
