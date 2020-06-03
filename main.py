@@ -3,7 +3,7 @@ from tensorflow import keras
 import numpy as np
 import sys
 import ctypes
-from matrix import doolittle, cholesky
+from matrix import *
 
 class Cell:
   def __init__(self, x, y, w, h, callback=None):
@@ -80,6 +80,21 @@ class Cell:
             done = False
       if done:
         print("Dla macierzy", matrix)
+        try:
+          det = determinant(matrix)
+          print("Wyznacznik:", det)
+        except:
+          print("Nie udało się obliczyć wyznacznika macierzy")
+        try:
+          inv = inverse(matrix)
+          print("Macierz odwrotna:", inv)
+        except:
+          print("Nie udało się wyznaczyć macierzy odwrotnej")
+        try:
+          tr = trace(matrix)
+          print("Ślad:", tr)
+        except:
+          print("Nie udało się wyznaczyć śladu macierzy")
         try:
           L, U = doolittle(matrix)
           print("Metoda LU")
