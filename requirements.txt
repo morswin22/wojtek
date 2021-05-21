@@ -1,4 +1,4 @@
 ﻿h5py==2.10.0
 numpy==1.18.4
 pygame==1.9.6
-tensorflow==2.2.1
+tensorflow==2.5.0
